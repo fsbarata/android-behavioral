@@ -1,6 +1,5 @@
 package com.fsbarata.behaviors
 
-import android.app.Activity
 import android.os.Bundle
 import android.support.annotation.IdRes
 import android.support.annotation.StringRes
@@ -8,11 +7,13 @@ import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
+import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.Toolbar
 import android.view.MenuItem
 import com.fsbarata.behaviors.framework.AbstractActivityBehavior
 
-class ActionDrawerActivityBehavior(
-		private val activity: Activity,
+class ToolbarActionDrawerActivityBehavior(
+		private val activity: AppCompatActivity,
 		@IdRes private val drawerLayoutId: Int,
 		@IdRes private val toolbarId: Int,
 		@IdRes private val navigationViewId: Int,
@@ -26,10 +27,13 @@ class ActionDrawerActivityBehavior(
 	override fun onContentViewAvailable() {
 		drawer = activity.findViewById(drawerLayoutId)
 
+		val toolbar = activity.findViewById<Toolbar>(toolbarId)
+		activity.setSupportActionBar(toolbar)
+
 		actionBarDrawerToggle = ActionBarDrawerToggle(
 				activity,
 				drawer,
-				activity.findViewById(toolbarId),
+				toolbar,
 				navigationDrawerOpenDescRes,
 				navigationDrawerCloseDescRes)
 

@@ -1,12 +1,12 @@
 package com.fsbarata.behaviors.sample
 
 import android.os.Bundle
-import com.fsbarata.behaviors.ActionDrawerActivityBehavior
+import com.fsbarata.behaviors.ToolbarActionDrawerActivityBehavior
 import com.fsbarata.behaviors.framework.BehaviorActivity
 
 class MainActivity : BehaviorActivity() {
 	init {
-		addBehavior(ActionDrawerActivityBehavior(
+		addBehavior(ToolbarActionDrawerActivityBehavior(
 				this,
 				R.id.drawer_layout, R.id.toolbar, R.id.nav_view,
 				R.string.navigation_drawer_open, R.string.navigation_drawer_close,
