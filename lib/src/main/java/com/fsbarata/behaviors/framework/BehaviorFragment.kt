@@ -64,7 +64,38 @@ abstract class BehaviorFragment : Fragment() {
 		super.onDetach()
 	}
 
+	override fun onCreate(savedInstanceState: Bundle?) {
+		super.onCreate(savedInstanceState)
+		lifecycleBehaviorHelper.onCreate(savedInstanceState)
+	}
+
+	override fun onStart() {
+		super.onStart()
+		lifecycleBehaviorHelper.onStart()
+	}
+
+	override fun onResume() {
+		super.onResume()
+		lifecycleBehaviorHelper.onResume()
+	}
+
+	override fun onPause() {
+		lifecycleBehaviorHelper.onPause()
+		super.onPause()
+	}
+
+	override fun onStop() {
+		lifecycleBehaviorHelper.onStop()
+		super.onStop()
+	}
+
+	override fun onDestroy() {
+		lifecycleBehaviorHelper.onDestroy()
+		super.onDestroy()
+	}
+
 	override fun onCreateOptionsMenu(menu: Menu, menuInflater: MenuInflater) {
+		super.onCreateOptionsMenu(menu, menuInflater)
 		lifecycleBehaviorHelper.onCreateOptionsMenu(menu, menuInflater)
 	}
 

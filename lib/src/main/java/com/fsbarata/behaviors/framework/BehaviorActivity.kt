@@ -2,6 +2,7 @@ package com.fsbarata.behaviors.framework
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.support.annotation.LayoutRes
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
@@ -33,10 +34,40 @@ abstract class BehaviorActivity : AppCompatActivity() {
 		removeBehavior(behavior as ILifecycleBehavior)
 	}
 
+	override fun onCreate(savedInstanceState: Bundle?) {
+		super.onCreate(savedInstanceState)
+		lifecycleBehaviorHelper.onCreate(savedInstanceState)
+	}
+
+	override fun onStart() {
+		super.onStart()
+		lifecycleBehaviorHelper.onStart()
+	}
+
+	override fun onResume() {
+		super.onResume()
+		lifecycleBehaviorHelper.onResume()
+	}
+
+	override fun onPause() {
+		lifecycleBehaviorHelper.onPause()
+		super.onPause()
+	}
+
+	override fun onStop() {
+		lifecycleBehaviorHelper.onStop()
+		super.onStop()
+	}
+
+	override fun onDestroy() {
+		lifecycleBehaviorHelper.onDestroy()
+		super.onDestroy()
+	}
+
 	override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
 		super.onRestoreInstanceState(savedInstanceState)
-		if (savedInstanceState != null) {
-			lifecycleBehaviorHelper.onRestoreInstanceState(savedInstanceState)
+		savedInstanceState?.run {
+			lifecycleBehaviorHelper.onRestoreInstanceState(this)
 		}
 	}
 

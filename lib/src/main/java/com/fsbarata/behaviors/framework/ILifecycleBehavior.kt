@@ -11,6 +11,18 @@ interface ILifecycleBehavior : LifecycleObserver {
 
 	fun onBehaviorDetached()
 
+	fun onCreate(savedInstanceState: Bundle?)
+
+	fun onStart()
+
+	fun onResume()
+
+	fun onPause()
+
+	fun onStop()
+
+	fun onDestroy()
+
 	fun onSaveInstanceState(outState: Bundle)
 
 	fun onRestoreInstanceState(savedInstanceState: Bundle)

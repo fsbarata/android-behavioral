@@ -18,6 +18,30 @@ class LifecycleBehaviorHelper {
 		behavior.onBehaviorDetached()
 	}
 
+	fun onCreate(savedInstanceState: Bundle?) {
+		behaviors.forEach { it.onCreate(savedInstanceState) }
+	}
+
+	fun onStart() {
+		behaviors.forEach { it.onStart() }
+	}
+
+	fun onResume() {
+		behaviors.forEach { it.onResume() }
+	}
+
+	fun onPause() {
+		behaviors.forEach { it.onPause() }
+	}
+
+	fun onStop() {
+		behaviors.forEach { it.onStop() }
+	}
+
+	fun onDestroy() {
+		behaviors.forEach { it.onDestroy() }
+	}
+
 	fun onSaveInstanceState(outState: Bundle) {
 		behaviors.forEach { it.onSaveInstanceState(outState) }
 	}
