@@ -1,6 +1,9 @@
 package com.fsbarata.behaviors.framework
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 
 abstract class AbstractLifecycleBehavior : ILifecycleBehavior {
 
@@ -23,4 +26,8 @@ abstract class AbstractLifecycleBehavior : ILifecycleBehavior {
 	override fun onSaveInstanceState(outState: Bundle) {}
 
 	override fun onRestoreInstanceState(savedInstanceState: Bundle) {}
+
+	override fun onCreateOptionsMenu(menu: Menu, menuInflater: MenuInflater) = false
+
+	override fun onOptionsItemSelected(item: MenuItem) = false
 }
