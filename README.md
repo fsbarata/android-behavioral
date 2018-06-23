@@ -7,5 +7,5 @@ Android behaviors for activities and fragments composition
 		maven { url 'https://jitpack.io' }
 	}
 	dependencies {
-		implementation 'com.github.fsbarata:android-behavioral:0.11'
+		implementation 'com.github.fsbarata:android-behavioral:0.12'
 	}
