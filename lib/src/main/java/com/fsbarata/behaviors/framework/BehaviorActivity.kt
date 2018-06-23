@@ -64,6 +64,11 @@ abstract class BehaviorActivity : AppCompatActivity() {
 		super.onDestroy()
 	}
 
+	override fun onPostCreate(savedInstanceState: Bundle?) {
+		super.onPostCreate(savedInstanceState)
+		behaviors.forEach { it.onPostCreate(savedInstanceState) }
+	}
+
 	override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
 		super.onRestoreInstanceState(savedInstanceState)
 		savedInstanceState?.run {
