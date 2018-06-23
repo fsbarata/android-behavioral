@@ -8,8 +8,8 @@ android {
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 27
-        versionCode 1
-        versionName "0.1"
+        versionCode 12
+        versionName "0.12"
     }
 
     compileOptions {
@@ -22,4 +22,13 @@ dependencies {
     implementation "com.android.support:appcompat-v7:$support_version"
     implementation "com.android.support:support-v4:$support_version"
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+}
+
+task sourceJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier "source"
+}
+
+artifacts {
+    archives sourceJar
 }
