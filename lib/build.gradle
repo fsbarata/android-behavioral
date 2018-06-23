@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.github.dcendents.android-maven'
 
 android {
     compileSdkVersion 27
@@ -24,11 +25,11 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
 
-task sourceJar(type: Jar) {
+task sourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
-    classifier "source"
+    classifier = 'sources'
 }
 
 artifacts {
-    archives sourceJar
+    archives sourcesJar
 }
