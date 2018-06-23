@@ -1,0 +1,8 @@
+<resources>
+    <dimen name="material_common_padding">16dp</dimen>
+
+    <dimen name="material_activity_margin">@dimen/material_common_padding</dimen>
+    <dimen name="material_nav_header_vertical_spacing">@dimen/material_common_padding</dimen>
+    <dimen name="material_nav_header_height">160dp</dimen>
+
+</resources>
