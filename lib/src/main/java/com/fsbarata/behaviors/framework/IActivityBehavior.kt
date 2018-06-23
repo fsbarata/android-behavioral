@@ -10,10 +10,6 @@ interface IActivityBehavior : ILifecycleBehavior {
 
 	fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?): Boolean
 
-	fun onCreateOptionsMenu(menu: Menu): Boolean
-
-	fun onOptionsItemSelected(item: MenuItem): Boolean
-
 	fun onSupportNavigateUp(): Boolean
 
 	fun onBackPressed(): Boolean

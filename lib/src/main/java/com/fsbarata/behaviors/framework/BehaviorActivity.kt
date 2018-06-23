@@ -72,8 +72,11 @@ abstract class BehaviorActivity : AppCompatActivity() {
 
 	override fun onCreateOptionsMenu(menu: Menu): Boolean {
 		val superResult = super.onCreateOptionsMenu(menu)
-		val behaviorsResult = behaviors.map { it.onCreateOptionsMenu(menu) }.any()
-		return superResult || behaviorsResult
+		return lifecycleBehaviorHelper.onCreateOptionsMenu(menu, menuInflater) || superResult
+	}
+
+	override fun onOptionsItemSelected(item: MenuItem): Boolean {
+		return lifecycleBehaviorHelper.onOptionsItemSelected(item) || super.onOptionsItemSelected(item)
 	}
 
 	override fun onBackPressed() {
@@ -82,10 +85,6 @@ abstract class BehaviorActivity : AppCompatActivity() {
 
 	override fun onSupportNavigateUp(): Boolean {
 		return behaviors.any { it.onSupportNavigateUp() } || super.onSupportNavigateUp()
-	}
-
-	override fun onOptionsItemSelected(item: MenuItem): Boolean {
-		return behaviors.any { it.onOptionsItemSelected(item) } || super.onOptionsItemSelected(item)
 	}
 
 	private fun onContentViewAvailable() {

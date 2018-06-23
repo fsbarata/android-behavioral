@@ -3,6 +3,9 @@ package com.fsbarata.behaviors.framework
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 
 abstract class BehaviorFragment : Fragment() {
@@ -59,5 +62,14 @@ abstract class BehaviorFragment : Fragment() {
 	override fun onDetach() {
 		behaviors.forEach { it.onDetach() }
 		super.onDetach()
+	}
+
+	override fun onCreateOptionsMenu(menu: Menu, menuInflater: MenuInflater) {
+		lifecycleBehaviorHelper.onCreateOptionsMenu(menu, menuInflater)
+	}
+
+	override fun onOptionsItemSelected(item: MenuItem): Boolean {
+		return lifecycleBehaviorHelper.onOptionsItemSelected(item) ||
+				super.onOptionsItemSelected(item)
 	}
 }
