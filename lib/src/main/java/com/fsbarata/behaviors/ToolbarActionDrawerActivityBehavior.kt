@@ -19,9 +19,10 @@ class ToolbarActionDrawerActivityBehavior(
 		@IdRes private val navigationViewId: Int,
 		@StringRes private val navigationDrawerOpenDescRes: Int = 0,
 		@StringRes private val navigationDrawerCloseDescRes: Int = 0,
-		private val navigationItemSelectedListener: (MenuItem) -> Boolean
+		private val gravity: Int = GravityCompat.START,
+		private val navigationItemSelectedListener: (MenuItem) -> Boolean = { false }
 ) : AbstractActivityBehavior() {
-	lateinit var drawer:DrawerLayout
+	lateinit var drawer: DrawerLayout
 	lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
 
 	override fun onContentViewAvailable() {
@@ -39,9 +40,7 @@ class ToolbarActionDrawerActivityBehavior(
 
 		drawer.addDrawerListener(actionBarDrawerToggle)
 		activity.findViewById<NavigationView>(navigationViewId).setNavigationItemSelectedListener {
-			navigationItemSelectedListener(it).also {
-				drawer.closeDrawer(GravityCompat.START)
-			}
+			navigationItemSelectedListener(it)
 		}
 	}
 
@@ -51,7 +50,7 @@ class ToolbarActionDrawerActivityBehavior(
 	}
 
 	override fun onBackPressed() =
-			drawer.isDrawerOpen(GravityCompat.START).also {
-				if (it) drawer.closeDrawer(GravityCompat.START)
+			drawer.isDrawerOpen(gravity).also {
+				if (it) drawer.closeDrawer(gravity)
 			}
 }
