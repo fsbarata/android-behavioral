@@ -51,7 +51,7 @@ class LifecycleBehaviorHelper {
 	}
 
 	fun onCreateOptionsMenu(menu: Menu, menuInflater: MenuInflater): Boolean {
-		return behaviors.map { it.onCreateOptionsMenu(menu, menuInflater) }.any()
+		return behaviors.filter { it.onCreateOptionsMenu(menu, menuInflater) }.any()
 	}
 
 	fun onOptionsItemSelected(item: MenuItem): Boolean {
