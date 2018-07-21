@@ -11,8 +11,6 @@ interface IActivityBehavior : ILifecycleBehavior {
 
 	fun onPostCreate(savedInstanceState: Bundle?)
 
-	fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?): Boolean
-
 	fun onSupportNavigateUp(): Boolean
 
 	fun onBackPressed(): Boolean

@@ -1,6 +1,7 @@
 package com.fsbarata.behaviors.framework
 
 import android.arch.lifecycle.LifecycleObserver
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
@@ -30,4 +31,6 @@ interface ILifecycleBehavior : LifecycleObserver {
 	fun onCreateOptionsMenu(menu: Menu, menuInflater: MenuInflater): Boolean
 
 	fun onOptionsItemSelected(item: MenuItem): Boolean
+
+	fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?): Boolean
 }

@@ -1,5 +1,6 @@
 package com.fsbarata.behaviors.framework
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
@@ -57,4 +58,7 @@ class LifecycleBehaviorHelper {
 	fun onOptionsItemSelected(item: MenuItem): Boolean {
 		return behaviors.any { it.onOptionsItemSelected(item) }
 	}
+
+	fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) =
+			behaviors.any { it.onActivityResult(requestCode, resultCode, data) }
 }

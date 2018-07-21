@@ -11,8 +11,6 @@ abstract class AbstractActivityBehavior : AbstractLifecycleBehavior(), IActivity
 
 	override fun onPostCreate(savedInstanceState: Bundle?) {}
 
-	override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) = false
-
 	override fun onCreateOptionsMenu(menu: Menu, menuInflater: MenuInflater) = false
 
 	override fun onOptionsItemSelected(item: MenuItem) = false

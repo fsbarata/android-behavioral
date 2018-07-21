@@ -1,5 +1,6 @@
 package com.fsbarata.behaviors.framework
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
@@ -30,4 +31,6 @@ abstract class AbstractLifecycleBehavior : ILifecycleBehavior {
 	override fun onCreateOptionsMenu(menu: Menu, menuInflater: MenuInflater) = false
 
 	override fun onOptionsItemSelected(item: MenuItem) = false
+
+	override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) = false
 }

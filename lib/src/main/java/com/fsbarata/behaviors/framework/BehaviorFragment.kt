@@ -1,6 +1,7 @@
 package com.fsbarata.behaviors.framework
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.Menu
@@ -102,5 +103,10 @@ abstract class BehaviorFragment : Fragment() {
 	override fun onOptionsItemSelected(item: MenuItem): Boolean {
 		return lifecycleBehaviorHelper.onOptionsItemSelected(item) ||
 				super.onOptionsItemSelected(item)
+	}
+
+	override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+		if (!lifecycleBehaviorHelper.onActivityResult(requestCode, resultCode, data))
+			super.onActivityResult(requestCode, resultCode, data)
 	}
 }

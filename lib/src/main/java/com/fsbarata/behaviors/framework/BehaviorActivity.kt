@@ -2,7 +2,6 @@ package com.fsbarata.behaviors.framework
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.support.annotation.LayoutRes
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
@@ -102,8 +101,8 @@ abstract class BehaviorActivity : AppCompatActivity() {
 	}
 
 	override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-		behaviors.find { it.onActivityResult(requestCode, resultCode, data) }
-				?: super.onActivityResult(requestCode, resultCode, data)
+		if (!lifecycleBehaviorHelper.onActivityResult(requestCode, resultCode, data))
+			super.onActivityResult(requestCode, resultCode, data)
 	}
 
 	override fun onCreateOptionsMenu(menu: Menu): Boolean {
