@@ -43,6 +43,10 @@ class LifecycleBehaviorHelper {
 		behaviors.forEach { it.onDestroy() }
 	}
 
+	fun onLowMemory() {
+		behaviors.forEach { it.onLowMemory() }
+	}
+
 	fun onSaveInstanceState(outState: Bundle) {
 		behaviors.forEach { it.onSaveInstanceState(outState) }
 	}
@@ -53,6 +57,10 @@ class LifecycleBehaviorHelper {
 
 	fun onCreateOptionsMenu(menu: Menu, menuInflater: MenuInflater): Boolean {
 		return behaviors.filter { it.onCreateOptionsMenu(menu, menuInflater) }.any()
+	}
+
+	fun onPrepareOptionsMenu(menu: Menu) {
+		behaviors.forEach { it.onPrepareOptionsMenu(menu) }
 	}
 
 	fun onOptionsItemSelected(item: MenuItem): Boolean {

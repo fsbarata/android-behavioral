@@ -63,6 +63,11 @@ abstract class BehaviorActivity : AppCompatActivity() {
 		super.onDestroy()
 	}
 
+	override fun onLowMemory() {
+		super.onLowMemory()
+		lifecycleBehaviorHelper.onLowMemory()
+	}
+
 	override fun onPostCreate(savedInstanceState: Bundle?) {
 		super.onPostCreate(savedInstanceState)
 		behaviors.forEach { it.onPostCreate(savedInstanceState) }
@@ -110,14 +115,18 @@ abstract class BehaviorActivity : AppCompatActivity() {
 			super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 	}
 
-	override fun onCreateOptionsMenu(menu: Menu): Boolean {
-		val superResult = super.onCreateOptionsMenu(menu)
-		return lifecycleBehaviorHelper.onCreateOptionsMenu(menu, menuInflater) || superResult
-	}
+	override fun onCreateOptionsMenu(menu: Menu) =
+			super.onCreateOptionsMenu(menu).let { superResult ->
+				lifecycleBehaviorHelper.onCreateOptionsMenu(menu, menuInflater) || superResult
+			}
 
-	override fun onOptionsItemSelected(item: MenuItem): Boolean {
-		return lifecycleBehaviorHelper.onOptionsItemSelected(item) || super.onOptionsItemSelected(item)
-	}
+	override fun onPrepareOptionsMenu(menu: Menu) =
+			super.onPrepareOptionsMenu(menu).also {
+				lifecycleBehaviorHelper.onPrepareOptionsMenu(menu)
+			}
+
+	override fun onOptionsItemSelected(item: MenuItem) =
+			lifecycleBehaviorHelper.onOptionsItemSelected(item) || super.onOptionsItemSelected(item)
 
 	override fun onBackPressed() {
 		behaviors.find { it.onBackPressed() } ?: super.onBackPressed()

@@ -24,11 +24,15 @@ abstract class AbstractLifecycleBehavior : ILifecycleBehavior {
 
 	override fun onDestroy() {}
 
+	override fun onLowMemory() {}
+
 	override fun onSaveInstanceState(outState: Bundle) {}
 
 	override fun onRestoreInstanceState(savedInstanceState: Bundle) {}
 
 	override fun onCreateOptionsMenu(menu: Menu, menuInflater: MenuInflater) = false
+
+	override fun onPrepareOptionsMenu(menu: Menu) {}
 
 	override fun onOptionsItemSelected(item: MenuItem) = false
 

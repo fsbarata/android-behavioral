@@ -1,6 +1,7 @@
 package com.fsbarata.behaviors.framework
 
 import android.content.Context
+import android.os.Bundle
 import android.view.View
 
 interface IFragmentBehavior : ILifecycleBehavior {
@@ -11,4 +12,6 @@ interface IFragmentBehavior : ILifecycleBehavior {
 	fun onAttach(context: Context)
 
 	fun onDetach()
+
+	fun onActivityCreated(savedInstanceState: Bundle?)
 }

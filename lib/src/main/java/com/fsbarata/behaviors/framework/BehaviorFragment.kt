@@ -70,6 +70,11 @@ abstract class BehaviorFragment : Fragment() {
 		lifecycleBehaviorHelper.onCreate(savedInstanceState)
 	}
 
+	override fun onActivityCreated(savedInstanceState: Bundle?) {
+		super.onActivityCreated(savedInstanceState)
+		behaviors.forEach { it.onActivityCreated(savedInstanceState) }
+	}
+
 	override fun onStart() {
 		super.onStart()
 		lifecycleBehaviorHelper.onStart()
@@ -95,9 +100,19 @@ abstract class BehaviorFragment : Fragment() {
 		super.onDestroy()
 	}
 
+	override fun onLowMemory() {
+		super.onLowMemory()
+		lifecycleBehaviorHelper.onLowMemory()
+	}
+
 	override fun onCreateOptionsMenu(menu: Menu, menuInflater: MenuInflater) {
 		super.onCreateOptionsMenu(menu, menuInflater)
 		lifecycleBehaviorHelper.onCreateOptionsMenu(menu, menuInflater)
+	}
+
+	override fun onPrepareOptionsMenu(menu: Menu) {
+		super.onPrepareOptionsMenu(menu)
+		lifecycleBehaviorHelper.onPrepareOptionsMenu(menu)
 	}
 
 	override fun onOptionsItemSelected(item: MenuItem): Boolean {

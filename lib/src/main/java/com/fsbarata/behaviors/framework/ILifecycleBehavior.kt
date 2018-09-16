@@ -24,11 +24,15 @@ interface ILifecycleBehavior : LifecycleObserver {
 
 	fun onDestroy()
 
+	fun onLowMemory()
+
 	fun onSaveInstanceState(outState: Bundle)
 
 	fun onRestoreInstanceState(savedInstanceState: Bundle)
 
 	fun onCreateOptionsMenu(menu: Menu, menuInflater: MenuInflater): Boolean
+
+	fun onPrepareOptionsMenu(menu: Menu)
 
 	fun onOptionsItemSelected(item: MenuItem): Boolean
 
