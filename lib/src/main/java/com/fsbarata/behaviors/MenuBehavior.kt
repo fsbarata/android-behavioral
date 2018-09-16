@@ -8,20 +8,22 @@ import android.view.MenuItem
 import com.fsbarata.behaviors.framework.AbstractLifecycleBehavior
 
 open class MenuBehavior(
-		private val activity: Activity?,
+		private val activity: () -> Activity?,
 		@param:MenuRes private val menuRes: Int,
 		vararg idClickListeners: Pair<Int, (MenuItem) -> Unit>
 ) : AbstractLifecycleBehavior() {
 	private val itemClickListenerMap = idClickListeners.toMap()
 
 	override fun onBehaviorAttached() {
-		if (activity?.window != null) {
+		val activity = activity() ?: return
+		if (activity.window != null) {
 			activity.invalidateOptionsMenu()
 		}
 	}
 
 	override fun onBehaviorDetached() {
-		if (activity?.window != null) {
+		val activity = activity() ?: return
+		if (activity.window != null) {
 			activity.invalidateOptionsMenu()
 		}
 	}
@@ -31,7 +33,6 @@ open class MenuBehavior(
 		return true
 	}
 
-	override fun onOptionsItemSelected(item: MenuItem): Boolean {
-		return itemClickListenerMap[item.itemId]?.also { it(item) } != null
-	}
+	override fun onOptionsItemSelected(item: MenuItem) =
+			itemClickListenerMap[item.itemId]?.also { it(item) } != null
 }
