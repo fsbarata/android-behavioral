@@ -61,4 +61,7 @@ class LifecycleBehaviorHelper {
 
 	fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) =
 			behaviors.any { it.onActivityResult(requestCode, resultCode, data) }
+
+	fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) =
+			behaviors.any { it.onRequestPermissionsResult(requestCode, permissions, grantResults) }
 }

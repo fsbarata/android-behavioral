@@ -33,4 +33,6 @@ interface ILifecycleBehavior : LifecycleObserver {
 	fun onOptionsItemSelected(item: MenuItem): Boolean
 
 	fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?): Boolean
+
+	fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray): Boolean
 }

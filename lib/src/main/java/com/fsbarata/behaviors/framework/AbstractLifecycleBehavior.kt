@@ -33,4 +33,6 @@ abstract class AbstractLifecycleBehavior : ILifecycleBehavior {
 	override fun onOptionsItemSelected(item: MenuItem) = false
 
 	override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) = false
+
+	override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) = false
 }

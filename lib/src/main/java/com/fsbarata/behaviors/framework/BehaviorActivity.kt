@@ -105,6 +105,11 @@ abstract class BehaviorActivity : AppCompatActivity() {
 			super.onActivityResult(requestCode, resultCode, data)
 	}
 
+	override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+		if (!lifecycleBehaviorHelper.onRequestPermissionsResult(requestCode, permissions, grantResults))
+			super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+	}
+
 	override fun onCreateOptionsMenu(menu: Menu): Boolean {
 		val superResult = super.onCreateOptionsMenu(menu)
 		return lifecycleBehaviorHelper.onCreateOptionsMenu(menu, menuInflater) || superResult

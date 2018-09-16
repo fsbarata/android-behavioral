@@ -109,4 +109,9 @@ abstract class BehaviorFragment : Fragment() {
 		if (!lifecycleBehaviorHelper.onActivityResult(requestCode, resultCode, data))
 			super.onActivityResult(requestCode, resultCode, data)
 	}
+
+	override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+		if (!lifecycleBehaviorHelper.onRequestPermissionsResult(requestCode, permissions, grantResults))
+			super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+	}
 }
