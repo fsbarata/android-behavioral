@@ -35,7 +35,7 @@ abstract class BehaviorFragment : Fragment() {
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
-		behaviors.forEach { it.onViewCreated() }
+		behaviors.forEach { it.onViewCreated(view) }
 	}
 
 	override fun onDestroyView() {
@@ -55,9 +55,9 @@ abstract class BehaviorFragment : Fragment() {
 		}
 	}
 
-	override fun onAttach(context: Context?) {
+	override fun onAttach(context: Context) {
 		super.onAttach(context)
-		behaviors.forEach { it.onAttach() }
+		behaviors.forEach { it.onAttach(context) }
 	}
 
 	override fun onDetach() {
