@@ -1,8 +1,8 @@
 package com.fsbarata.behaviors
 
-import android.support.annotation.IdRes
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.Toolbar
+import androidx.annotation.IdRes
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import com.fsbarata.behaviors.framework.AbstractActivityBehavior
 
 class ToolbarBackActivityBehavior(

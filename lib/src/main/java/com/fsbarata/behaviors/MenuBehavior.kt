@@ -1,10 +1,10 @@
 package com.fsbarata.behaviors
 
 import android.app.Activity
-import android.support.annotation.MenuRes
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import androidx.annotation.MenuRes
 import com.fsbarata.behaviors.framework.AbstractLifecycleBehavior
 
 open class MenuBehavior(

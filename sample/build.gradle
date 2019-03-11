@@ -2,22 +2,13 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
 
     defaultConfig {
         applicationId "com.fsbarata.behaviors.sample"
-        minSdkVersion 19
+        minSdkVersion 21
         versionCode 1
         versionName "1.0"
-
-        vectorDrawables.useSupportLibrary = true
-
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-    }
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
     }
 
     buildTypes {
@@ -30,10 +21,9 @@ android {
 
 dependencies {
     implementation project(':lib')
-    implementation "com.android.support:appcompat-v7:$support_version"
-    implementation "com.android.support:design:$support_version"
-    implementation "com.android.support:support-v4:$support_version"
-    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+    implementation "androidx.appcompat:appcompat:$androidx_version"
+    implementation "com.google.android.material:material:1.0.0-rc01"
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
 
