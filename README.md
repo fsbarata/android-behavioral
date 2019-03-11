@@ -8,7 +8,7 @@ Provide consistency and reusability to your activities and fragments using this 
 		maven { url 'https://jitpack.io' }
 	}
 	dependencies {
-		implementation 'com.github.fsbarata:android-behavioral:1.1'
+		implementation 'com.github.fsbarata:android-behavioral:1.1.3' // 1.1.3-x for androidx
 	}
 
 ## Behaviors
