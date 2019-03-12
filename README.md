@@ -1,4 +1,6 @@
 # android-behavioral
+[![](https://jitpack.io/v/fsbarata/android-behavioral.svg)](https://jitpack.io/#fsbarata/android-behavioral)
+
 Android behaviors for activities and fragments logic composition.
 
 Provide consistency and reusability to your activities and fragments using this framework.
@@ -8,7 +10,7 @@ Provide consistency and reusability to your activities and fragments using this 
 		maven { url 'https://jitpack.io' }
 	}
 	dependencies {
-		implementation 'com.github.fsbarata:android-behavioral:1.1.3' // 1.1.3-x for androidx
+		implementation 'com.github.fsbarata:android-behavioral:1.2.0' // 1.2.0-x for androidx
 	}
 
 ## Behaviors
