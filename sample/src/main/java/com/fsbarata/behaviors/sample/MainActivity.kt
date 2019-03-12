@@ -1,6 +1,8 @@
 package com.fsbarata.behaviors.sample
 
 import android.os.Bundle
+import android.widget.Toast
+import com.fsbarata.behaviors.MenuBehavior
 import com.fsbarata.behaviors.ToolbarActionDrawerActivityBehavior
 import com.fsbarata.behaviors.framework.BehaviorActivity
 
@@ -18,6 +20,14 @@ class MainActivity : BehaviorActivity() {
 					}
 					true
 				}))
+
+		addBehavior(MenuBehavior(
+				this,
+				R.menu.sample_activity_menu,
+				R.id.add to { menuItem ->
+					Toast.makeText(this, "Clicked $menuItem", Toast.LENGTH_SHORT).show()
+				}
+		))
 	}
 
 	override fun onCreate(savedInstanceState: Bundle?) {
