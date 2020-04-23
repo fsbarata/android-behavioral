@@ -11,35 +11,37 @@ import androidx.fragment.app.Fragment
 
 abstract class BehaviorFragment : Fragment() {
 	private val lifecycleBehaviorHelper = LifecycleBehaviorHelper()
-	private val behaviors = mutableListOf<IFragmentBehavior>()
+	private val fragmentBehaviors = mutableListOf<IFragmentBehavior>()
+
+	val behaviors: List<ILifecycleBehavior> = lifecycleBehaviorHelper.behaviors
 
 	fun addBehavior(behavior: ILifecycleBehavior) {
+		if (behavior is IFragmentBehavior) fragmentBehaviors.add(behavior)
 		lifecycleBehaviorHelper.addBehavior(behavior)
 		lifecycle.addObserver(behavior)
+	}
+
+	fun addBehaviors(vararg behaviors: ILifecycleBehavior) {
+		behaviors.forEach { addBehavior(it) }
 	}
 
 	fun removeBehavior(behavior: ILifecycleBehavior) {
 		lifecycle.removeObserver(behavior)
 		lifecycleBehaviorHelper.removeBehavior(behavior)
+		if (behavior is IFragmentBehavior) fragmentBehaviors.remove(behavior)
 	}
 
-	fun addBehavior(behavior: IFragmentBehavior) {
-		behaviors.add(behavior)
-		addBehavior(behavior as ILifecycleBehavior)
-	}
-
-	fun removeBehavior(behavior: IFragmentBehavior) {
-		behaviors.remove(behavior)
-		removeBehavior(behavior as ILifecycleBehavior)
+	fun removeBehaviors(vararg behaviors: ILifecycleBehavior) {
+		behaviors.forEach { removeBehavior(it) }
 	}
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
-		behaviors.forEach { it.onViewCreated(view) }
+		fragmentBehaviors.forEach { it.onViewCreated(view) }
 	}
 
 	override fun onDestroyView() {
-		behaviors.forEach { it.onDestroyView() }
+		fragmentBehaviors.forEach { it.onDestroyView() }
 		super.onDestroyView()
 	}
 
@@ -57,11 +59,11 @@ abstract class BehaviorFragment : Fragment() {
 
 	override fun onAttach(context: Context) {
 		super.onAttach(context)
-		behaviors.forEach { it.onAttach(context) }
+		fragmentBehaviors.forEach { it.onAttach(context) }
 	}
 
 	override fun onDetach() {
-		behaviors.forEach { it.onDetach() }
+		fragmentBehaviors.forEach { it.onDetach() }
 		super.onDetach()
 	}
 
@@ -72,7 +74,7 @@ abstract class BehaviorFragment : Fragment() {
 
 	override fun onActivityCreated(savedInstanceState: Bundle?) {
 		super.onActivityCreated(savedInstanceState)
-		behaviors.forEach { it.onActivityCreated(savedInstanceState) }
+		fragmentBehaviors.forEach { it.onActivityCreated(savedInstanceState) }
 	}
 
 	override fun onStart() {

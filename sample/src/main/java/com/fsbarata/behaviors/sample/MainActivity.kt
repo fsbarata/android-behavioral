@@ -8,7 +8,7 @@ import com.fsbarata.behaviors.framework.BehaviorActivity
 
 class MainActivity : BehaviorActivity() {
 	init {
-		addBehavior(ToolbarActionDrawerActivityBehavior(
+		addBehaviors(ToolbarActionDrawerActivityBehavior(
 				this,
 				R.id.drawer_layout, R.id.toolbar, R.id.nav_view,
 				R.string.navigation_drawer_open, R.string.navigation_drawer_close,
@@ -19,9 +19,8 @@ class MainActivity : BehaviorActivity() {
 						R.id.nav_gallery -> noop()
 					}
 					true
-				}))
-
-		addBehavior(MenuBehavior(
+				}
+		), MenuBehavior(
 				this,
 				R.menu.sample_activity_menu,
 				R.id.add to { menuItem ->

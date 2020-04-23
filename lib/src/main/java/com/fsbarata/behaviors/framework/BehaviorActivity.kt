@@ -11,26 +11,28 @@ import androidx.appcompat.app.AppCompatActivity
 
 abstract class BehaviorActivity : AppCompatActivity() {
 	private val lifecycleBehaviorHelper = LifecycleBehaviorHelper()
-	private val behaviors = mutableListOf<IActivityBehavior>()
+	private val activityBehaviors = mutableListOf<IActivityBehavior>()
+
+	val behaviors: List<ILifecycleBehavior> = lifecycleBehaviorHelper.behaviors
 
 	fun addBehavior(behavior: ILifecycleBehavior) {
+		if (behavior is IActivityBehavior) activityBehaviors.add(behavior)
 		lifecycleBehaviorHelper.addBehavior(behavior)
 		lifecycle.addObserver(behavior)
 	}
 
+	fun addBehaviors(vararg behaviors: ILifecycleBehavior) {
+		behaviors.forEach { addBehavior(it) }
+	}
+
 	fun removeBehavior(behavior: ILifecycleBehavior) {
-		lifecycleBehaviorHelper.removeBehavior(behavior)
 		lifecycle.removeObserver(behavior)
+		lifecycleBehaviorHelper.removeBehavior(behavior)
+		if (behavior is IActivityBehavior) activityBehaviors.remove(behavior)
 	}
 
-	fun addBehavior(behavior: IActivityBehavior) {
-		behaviors.add(behavior)
-		addBehavior(behavior as ILifecycleBehavior)
-	}
-
-	fun removeBehavior(behavior: IActivityBehavior) {
-		behaviors.remove(behavior)
-		removeBehavior(behavior as ILifecycleBehavior)
+	fun removeBehaviors(vararg behaviors: ILifecycleBehavior) {
+		behaviors.forEach { removeBehavior(it) }
 	}
 
 	override fun onCreate(savedInstanceState: Bundle?) {
@@ -70,19 +72,17 @@ abstract class BehaviorActivity : AppCompatActivity() {
 
 	override fun onPostCreate(savedInstanceState: Bundle?) {
 		super.onPostCreate(savedInstanceState)
-		behaviors.forEach { it.onPostCreate(savedInstanceState) }
+		activityBehaviors.forEach { it.onPostCreate(savedInstanceState) }
 	}
 
-	override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
+	override fun onRestoreInstanceState(savedInstanceState: Bundle) {
 		super.onRestoreInstanceState(savedInstanceState)
-		savedInstanceState?.run {
-			lifecycleBehaviorHelper.onRestoreInstanceState(this)
-		}
+		lifecycleBehaviorHelper.onRestoreInstanceState(savedInstanceState)
 	}
 
 	override fun onNewIntent(intent: Intent) {
 		super.onNewIntent(intent)
-		behaviors.forEach { it.onNewIntent(intent) }
+		activityBehaviors.forEach { it.onNewIntent(intent) }
 	}
 
 	override fun onSaveInstanceState(outState: Bundle) {
@@ -129,14 +129,14 @@ abstract class BehaviorActivity : AppCompatActivity() {
 			lifecycleBehaviorHelper.onOptionsItemSelected(item) || super.onOptionsItemSelected(item)
 
 	override fun onBackPressed() {
-		behaviors.find { it.onBackPressed() } ?: super.onBackPressed()
+		activityBehaviors.find { it.onBackPressed() } ?: super.onBackPressed()
 	}
 
 	override fun onSupportNavigateUp(): Boolean {
-		return behaviors.any { it.onSupportNavigateUp() } || super.onSupportNavigateUp()
+		return activityBehaviors.any { it.onSupportNavigateUp() } || super.onSupportNavigateUp()
 	}
 
 	private fun onContentViewAvailable() {
-		behaviors.forEach { it.onContentViewAvailable() }
+		activityBehaviors.forEach { it.onContentViewAvailable() }
 	}
 }

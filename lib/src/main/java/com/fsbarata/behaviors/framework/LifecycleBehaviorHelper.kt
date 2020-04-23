@@ -6,8 +6,8 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 
-class LifecycleBehaviorHelper {
-	private val behaviors = mutableListOf<ILifecycleBehavior>()
+internal class LifecycleBehaviorHelper {
+	val behaviors = mutableListOf<ILifecycleBehavior>()
 
 	fun addBehavior(behavior: ILifecycleBehavior) {
 		behaviors.add(behavior)

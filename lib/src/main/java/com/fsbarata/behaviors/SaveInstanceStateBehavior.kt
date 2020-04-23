@@ -26,6 +26,7 @@ class SaveInstanceStateBehavior<T: Parcelable>(
 	}
 
 	override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-		(savedInstanceState.getParcelable(key) as T?)?.run { restoreableProvider().restoreState(this) }
+		(savedInstanceState.getParcelable(key) as T?)
+				?.run { restoreableProvider().restoreState(this) }
 	}
 }
