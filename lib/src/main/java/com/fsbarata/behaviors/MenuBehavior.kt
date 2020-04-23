@@ -1,11 +1,11 @@
 package com.fsbarata.behaviors
 
 import android.app.Activity
-import android.support.annotation.MenuRes
-import android.support.v4.app.Fragment
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import androidx.annotation.MenuRes
+import androidx.fragment.app.Fragment
 import com.fsbarata.behaviors.framework.AbstractLifecycleBehavior
 
 class MenuBehavior private constructor(
@@ -20,13 +20,13 @@ class MenuBehavior private constructor(
 			activity: Activity,
 			@MenuRes menuRes: Int,
 			vararg idClickListeners: Pair<Int, (MenuItem) -> Unit>
-	): this(activity, null, menuRes, *idClickListeners)
+	) : this(activity, null, menuRes, *idClickListeners)
 
 	constructor(
 			fragment: Fragment,
 			@MenuRes menuRes: Int,
 			vararg idClickListeners: Pair<Int, (MenuItem) -> Unit>
-	): this(null, fragment, menuRes, *idClickListeners)
+	) : this(null, fragment, menuRes, *idClickListeners)
 
 	override fun onBehaviorAttached() {
 		val activity = activity ?: fragment?.activity ?: return
