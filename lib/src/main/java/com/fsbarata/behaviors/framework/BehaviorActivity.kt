@@ -9,7 +9,10 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 
-abstract class BehaviorActivity : AppCompatActivity() {
+abstract class BehaviorActivity : AppCompatActivity {
+	constructor() : super()
+	constructor(@LayoutRes contentLayoutId: Int) : super(contentLayoutId)
+
 	private val lifecycleBehaviorHelper = LifecycleBehaviorHelper()
 	private val activityBehaviors = mutableListOf<IActivityBehavior>()
 

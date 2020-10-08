@@ -6,7 +6,7 @@ import com.fsbarata.behaviors.MenuBehavior
 import com.fsbarata.behaviors.ToolbarActionDrawerActivityBehavior
 import com.fsbarata.behaviors.framework.BehaviorActivity
 
-class MainActivity : BehaviorActivity() {
+class MainActivity : BehaviorActivity(R.layout.activity_main) {
 	init {
 		addBehaviors(ToolbarActionDrawerActivityBehavior(
 				this,
@@ -31,7 +31,6 @@ class MainActivity : BehaviorActivity() {
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-		setContentView(R.layout.activity_main)
 
 		supportFragmentManager.beginTransaction()
 				.replace(R.id.fragment_container, MainFrag())
