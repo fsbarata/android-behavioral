@@ -7,9 +7,13 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
 
-abstract class BehaviorFragment : Fragment() {
+abstract class BehaviorFragment : Fragment {
+	constructor(): super()
+	constructor(@LayoutRes contentLayoutId: Int): super(contentLayoutId)
+
 	private val lifecycleBehaviorHelper = LifecycleBehaviorHelper()
 	private val fragmentBehaviors = mutableListOf<IFragmentBehavior>()
 
